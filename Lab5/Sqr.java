@@ -6,6 +6,7 @@ public class Sqr {
 
     int x, y;
     int cost;
+
     boolean isStart;
     boolean isEnd;
     boolean isBlank;

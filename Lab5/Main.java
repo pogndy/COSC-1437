@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         FileReader reader = new FileReader("squares.txt");
         Sqr[][] squares = reader.readFile(new Sqr[6][7]);
+
         var start = squares[0][0];
         start.isStart = true;
         var end = squares[3][6];
