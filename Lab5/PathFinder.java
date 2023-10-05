@@ -1,15 +1,16 @@
 package Lab5;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
-//Simplified example to show how to chain method calls to "discover" useful info
 public class PathFinder {
+	private Sqr[][] squares;
 
-	public static ArrayList<Sqr> findPath(Sqr start, Sqr end) {
+	public PathFinder(Sqr[][] squares) {
+		this.squares = squares;
+	}
+
+	public ArrayList<Sqr> findPath(Sqr start, Sqr end) {
 		ArrayList<Sqr> path = null;
 		ArrayList<Sqr> open = new ArrayList<Sqr>();
 		ArrayList<Sqr> closed = new ArrayList<Sqr>();
@@ -51,18 +52,16 @@ public class PathFinder {
 				}
 			}
 		}
-
 		return path;
-
 	}
 
-	public static void setNeighbors(Sqr squares[][]) {
+	public void setNeighbors() {
 		for (int r = 0; r < squares.length; r++)
 			for (int c = 0; c < squares[r].length; c++)
 				squares[r][c].setNeighbors(squares);
 	}
 
-	public static void drawSquares(Sqr squares[][]) {
+	public void drawSquares() {
 		for (int r = 0; r < squares.length; r++) {
 			// top row for squares
 			for (int c = 0; c < squares[r].length; c++)
