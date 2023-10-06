@@ -20,14 +20,15 @@ public class ShippingNode {
         this.cost = 1;
     }
 
-    public void connectNeighbors(ShippingNode neighborNode) {
-        connectNeighbors(neighborNode, true);
+    public void connectNeighbors(int id, ShippingNode neighborNode, int cost, int time, String type) {
+        connectNeighbors(id, neighborNode, cost, time, type, true);
     }
 
-    private void connectNeighbors(ShippingNode neighborNode, boolean establishBiDirectionalConnection) {
+    private void connectNeighbors(int id, ShippingNode neighborNode, int cost, int time, String type,
+            boolean establishBiDirectionalConnection) {
         boolean connectionAlreadyExists = false;
 
-        ShippingNodeConnection newConnection = new ShippingNodeConnection(this, neighborNode, 1);
+        ShippingNodeConnection newConnection = new ShippingNodeConnection(id, this, neighborNode, cost, time, type);
         // check if the new connection exists already
         for (ShippingNodeConnection connection : neighbors) {
             if (connection.connectionExists(newConnection)) {
@@ -41,7 +42,7 @@ public class ShippingNode {
         }
 
         if (establishBiDirectionalConnection) {
-            neighborNode.connectNeighbors(this, false);
+            neighborNode.connectNeighbors(id, this, cost, time, type, false);
         }
 
     }
