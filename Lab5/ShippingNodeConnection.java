@@ -2,14 +2,21 @@ package Lab5;
 
 public class ShippingNodeConnection {
 
+    private int id;
     private ShippingNode firstNode;
     private ShippingNode secondNode;
     private int cost;
+    private int time;
+    private String type;
 
-    public ShippingNodeConnection(ShippingNode firstNode, ShippingNode secondNode, int cost) {
+    public ShippingNodeConnection(int id, ShippingNode firstNode, ShippingNode secondNode, int cost, int time,
+            String type) {
+        this.id = id;
         this.firstNode = firstNode;
         this.secondNode = secondNode;
         this.cost = cost;
+        this.time = time;
+        this.type = type;
     }
 
     public ShippingNode getNodeConnection(ShippingNode node) {
