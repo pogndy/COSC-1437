@@ -5,33 +5,53 @@ import java.util.Objects;
 
 public class ShippingNode {
     private String name;
-    private int cost;
-    private ArrayList<ShippingNode> pathToGetTo;
+    private Path pathToGetTo = new Path();
+    private boolean isVisited = false;
     private ArrayList<ShippingNodeConnection> neighbors = new ArrayList<>();
 
     public ShippingNode(String name) {
         this.name = name;
-        this.cost = Integer.MAX_VALUE;
+        pathToGetTo = new Path();
     }
 
     public String getName() {
         return name;
     }
 
-    public int getCost() {
-        return cost;
+    public boolean isVisited() {
+        return isVisited;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void markVisited() {
+        this.isVisited = true;
     }
 
-    public ArrayList<ShippingNode> getPath() {
+    public void markUnvisited() {
+        this.isVisited = false;
+    }
+
+    public Path getPath() {
         return this.pathToGetTo;
     }
 
-    public void setPath(ArrayList<ShippingNode> path) {
+    public void setPath(Path path) {
         this.pathToGetTo = path;
+    }
+
+    public int getCost() {
+        return pathToGetTo.getCumulativeCost();
+    }
+
+    public void setCost(int cost) {
+        this.pathToGetTo.setCumulativeCost(cost);
+    }
+
+    public int getTime() {
+        return this.pathToGetTo.getCumulativeTime();
+    }
+
+    public void setTime(int time) {
+        this.pathToGetTo.setCumulativeTime(time);
     }
 
     public ArrayList<ShippingNodeConnection> getNeighbors() {

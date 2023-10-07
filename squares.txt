@@ -1,11 +1,5 @@
 #network
 #id start    end     cost    time    type
-1    Brecha    Abaca    2    2    road
 2    Abaca    Brecha    1    2    road
-3    Abaca    Chiano    5    2    road
-4    Chiano    Brecha    1   2    road
-5    Dolton    Brecha    5    8    road
-6    Brecha    Dolton    1    8    road  
-7    Abaca    Islando    8    10    water
-8    Dolton   Chiano     1      1   water
-9   Brecha    Chiano     5      1    road
+3    Abaca    Chiano    5    7    road
+9   Brecha    Chiano    2   4    road

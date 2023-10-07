@@ -12,14 +12,14 @@ public class Main {
         // Todo - comes from cargo class
         String startName = "Abaca";
         ShippingNode start = ShippingNode.getNodeByName(nodes, startName);
-        start.setCost(0);
+        start.setTime(0);
 
         String endName = "Chiano";
         ShippingNode end = ShippingNode.getNodeByName(nodes, endName);
 
         var path = PathFinder.findPath(start, end);
 
-        for (ShippingNode node : path) {
+        for (ShippingNode node : path.getNodes()) {
             System.out.println(node.getName());
         }
     }

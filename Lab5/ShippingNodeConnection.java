@@ -35,6 +35,10 @@ public class ShippingNodeConnection {
         return this.cost;
     }
 
+    public int getTime() {
+        return this.time;
+    }
+
     public VehicleType getType() {
         return this.type;
     }
