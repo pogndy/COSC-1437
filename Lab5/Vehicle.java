@@ -13,27 +13,6 @@ public class Vehicle {
         this.isAvailable = true;
     }
 
-    public Vehicle findNearestEligibleVehicle(ShippingNode startNode, ArrayList<Vehicle> vehicles,
-            VehicleType vehicleType) {
-        Vehicle closestVehicle = null;
-        int shortestTime = Integer.MAX_VALUE;
-
-        for (Vehicle vehicle : vehicles) {
-            if (!vehicle.isAvailable() || vehicle.type != vehicleType)
-                continue;
-
-            Path pathToStartNode = PathFinder.findPath(vehicle.currentNode, startNode);
-            int time = pathToStartNode.getCumulativeTime();
-
-            if (time < shortestTime) {
-                closestVehicle = vehicle;
-                shortestTime = time;
-            }
-        }
-
-        return closestVehicle;
-    }
-
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -42,4 +21,17 @@ public class Vehicle {
         this.currentNode = nextNode;
     }
 
+    public boolean canTraverse(ShippingNodeConnection connection) {
+        VehicleType connectionType = connection.getType();
+        return (connectionType.getType() == type.getType());
+    }
+
+    public int getTimeToNode(ShippingNode target) {
+        Path pathToTarget = PathFinder.findPathWithVehicle(this.currentNode, target, this);
+        if (pathToTarget != null) {
+            return pathToTarget.getCumulativeTime();
+        } else {
+            return Integer.MAX_VALUE; // Return a large value to represent inaccessibility.
+        }
+    }
 }

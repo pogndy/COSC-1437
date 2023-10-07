@@ -1,5 +1,5 @@
 #network
 #id start    end     cost    time    type
 2    Abaca    Brecha    1    2    road
-3    Abaca    Chiano    5    7    road
+3    Abaca    Chiano    5    3    road
 9   Brecha    Chiano    2   4    road

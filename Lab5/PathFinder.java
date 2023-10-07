@@ -10,7 +10,34 @@ import java.util.Comparator;
 // With A* I was continually fighting the code to make it not
 // exit prematurely.
 public class PathFinder {
-	public static Path findPath(ShippingNode start, ShippingNode end) {
+	public static Path findPath(ShippingNode start, ShippingNode end, ArrayList<Vehicle> vehicles) {
+		Path bestPath = null;
+		int shortestTime = Integer.MAX_VALUE;
+
+		for (Vehicle vehicle : vehicles) {
+			int timeForVehicleToStart = vehicle.getTimeToNode(start);
+			Path currentPath = findPathForVehicle(start, end, vehicle, timeForVehicleToStart);
+			if (currentPath != null && currentPath.getCumulativeTime() < shortestTime) {
+				shortestTime = currentPath.getCumulativeTime();
+				bestPath = currentPath;
+			}
+		}
+
+		return bestPath;
+	}
+
+	private static Path findPathForVehicle(ShippingNode start, ShippingNode end, Vehicle vehicle,
+			int timeForVehicleToStart) {
+		Path computedPath = findPathWithVehicle(start, end, vehicle);
+
+		if (computedPath != null) {
+			computedPath.addTransitTime(timeForVehicleToStart);
+		}
+
+		return computedPath;
+	}
+
+	public static Path findPathWithVehicle(ShippingNode start, ShippingNode end, Vehicle vehicle) {
 		ArrayList<ShippingNode> open = new ArrayList<ShippingNode>();
 		ArrayList<ShippingNode> closed = new ArrayList<ShippingNode>();
 
@@ -31,6 +58,9 @@ public class PathFinder {
 
 			ArrayList<ShippingNodeConnection> neighborConnections = current.getNeighbors();
 			for (ShippingNodeConnection connection : neighborConnections) {
+				if (vehicle != null && !vehicle.canTraverse(connection)) {
+					continue;
+				}
 				// Find the time of the connection to the neighbor
 				ShippingNode neighborNode = connection.getNodeConnection(current);
 				int tentativeTime = current.getTime() + connection.getTime();

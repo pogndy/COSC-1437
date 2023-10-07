@@ -27,6 +27,10 @@ public class Path {
         return cumulativeTime;
     }
 
+    public void addTransitTime(int transitTime) {
+        this.cumulativeTime += transitTime;
+    }
+
     public void setCumulativeTime(int time) {
         this.cumulativeTime = time;
     }

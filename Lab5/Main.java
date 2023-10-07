@@ -17,7 +17,12 @@ public class Main {
         String endName = "Chiano";
         ShippingNode end = ShippingNode.getNodeByName(nodes, endName);
 
-        var path = PathFinder.findPath(start, end);
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        Vehicle vehicle = new Vehicle(VehicleType.fromString("road"));
+        vehicle.setCurrentNode(end);
+        vehicles.add(vehicle);
+
+        var path = PathFinder.findPath(start, end, vehicles);
 
         for (ShippingNode node : path.getNodes()) {
             System.out.println(node.getName());
