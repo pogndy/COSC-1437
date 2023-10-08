@@ -18,10 +18,10 @@ public class Main {
         ShippingNode end = ShippingNode.getNodeByName(nodes, endName);
 
         ArrayList<Vehicle> vehicles = new ArrayList<>();
-        Vehicle vehicle = new Vehicle(VehicleType.fromString("road"));
-        vehicle.setCurrentNode(end);
-        vehicles.add(vehicle);
-
+        Vehicle truck1 = new Vehicle(VehicleType.TRUCK, 1 );
+        truck1.setCurrentNode(end);
+        vehicles.add(truck1);
+        
         var path = PathFinder.findPath(start, end, vehicles);
 
         for (ShippingNode node : path.getNodes()) {

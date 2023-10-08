@@ -7,10 +7,12 @@ public class Vehicle {
     private VehicleType type;
     private ShippingNode currentNode;
     private boolean isAvailable;
+    private final int VIN;
 
-    public Vehicle(VehicleType vehicleType) {
+    public Vehicle(VehicleType vehicleType, int VIN) { //constructor for vehicle
         this.type = vehicleType;
         this.isAvailable = true;
+        this.VIN = VIN;
     }
 
     public boolean isAvailable() {
@@ -33,5 +35,9 @@ public class Vehicle {
         } else {
             return Integer.MAX_VALUE; // Return a large value to represent inaccessibility.
         }
+    }
+
+    public String toString() { //is invoked whenever it is used as String
+        return "" + type + " " + VIN;
     }
 }
